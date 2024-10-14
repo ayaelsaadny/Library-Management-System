@@ -1,0 +1,39 @@
+﻿@using book.Models;
+@{
+    ViewData["Title"] = "AllType";
+    Layout = "~/Views/Shared/_Home.cshtml";
+}
+@model List<Book>
+<html>
+    <head>
+        <style>
+            .item{
+                width:400px;
+                height:500px;
+                border: dashed dashed;
+                border-radius:15px;
+                display:inline-block;
+                text-align:center;
+                margin-left: 40px;
+            }
+            .item img{
+                width:400px;
+                height:500px;
+                border-radius:15px;
+            }
+        </style>
+    </head>
+    <body>
+        <br />
+    @foreach (var item in Model)
+    {
+        <div class="item">
+            <img src="/image/@item.photo" alt="Photo" />
+            <h2>@item.name</h2>
+            <a asp-action="Details" asp-route-id="@item.id">View Details</a>
+        </div>
+    }
+    <br />
+    <a class="btn btn-primary" asp-action="AllBooks">Home Page</a>
+</body>
+</html>

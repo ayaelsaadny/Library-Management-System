@@ -1,0 +1,22 @@
+﻿body {
+    background-color: #f4f4f4;
+}
+.part{
+   
+    
+    background-color:white;
+    text-align:center;
+}
+.item{
+    width:23%;
+    text-align:center;
+    display:inline-block;
+
+}
+img{
+    width:140px;
+    height:175px;
+    border-radius:10px;
+}
+
+

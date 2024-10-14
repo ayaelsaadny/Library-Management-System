@@ -1,0 +1,37 @@
+﻿@using book.Models
+@{
+    ViewData["Title"] = "Details";
+    Layout = "~/Views/Shared/_Home.cshtml";
+}
+@model Book
+<html>
+    <head>
+        <style>
+            
+            .card img{
+                width:600px;
+                height:500px;
+                border-radius:20px;
+            }
+        </style>
+    </head>
+    <body>
+              <div class="card">
+                <img src="/image/@Model.photo" alt="Photo" />
+                   <h2>Name : @Model.name</h2>
+                         @if(@Model.avalibilty ){
+                              <b>Book is Available</b>
+                         }
+                         else
+                         {
+                              <b>Book isn't Available</b>
+                         }
+
+                <b>Type : @Model.gener</b>
+                <b>Auther: @Model.Author</b>
+                <a class="btn btn-success">Borrow</a>
+                <button class="btn btn-dark">Buy</button>
+                <a class="btn btn-primary" asp-action="AllBooks">Home Page</a>
+              </div>
+</body>
+</html >

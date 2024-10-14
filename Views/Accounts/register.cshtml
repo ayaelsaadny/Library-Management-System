@@ -1,0 +1,23 @@
+﻿@using book.ViewModel;
+@model registerViewModel
+<html>
+    <head>
+        <link href="~/css/login.css" rel="stylesheet" />
+    </head>
+    <body>
+        <div class="login-page">
+  <div class="form">
+     <form asp-action="register" method="post" class="login-form">
+      <input asp-for="FirstName" type="text" placeholder="FirstName"/>
+      <input asp-for="LastName" type="text" placeholder="LastName" />
+      <input asp-for="username" type="text" placeholder="UserName" />
+      <input  asp-for="email" type="text" placeholder="email address" />
+      <input asp-for="password" type="password" placeholder="password"/>
+      
+      <button type="submit">create</button>
+      <p class="message">Already registered? <a href="/Accounts/login">Sign In</a></p>
+    </form>
+  </div>
+</div>
+    </body>
+</html>

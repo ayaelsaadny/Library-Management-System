@@ -1,0 +1,58 @@
+﻿@using book.Models;
+@{
+    Layout = "_Home";
+}
+@model List<Book>
+<html>
+<head>
+    <link href="/css/AllBooks.css" rel="stylesheet" />
+</head>
+<body>
+   
+    <br />
+    <a asp-action="AllType" asp-route-type="Classic">Classic Books</a>
+    <div class="part">
+
+        @foreach (var item in Model.Where(s => s.id < 5 && s.gener == "Classic"))
+        {
+            <div class="item">
+                <img src="/image/@item.photo" alt="photo" />
+                <h2>@item.name</h2>
+                <a class="btn btn-primary" asp-action="Details" asp-route-id="@item.id">View Details</a>
+            </div>
+        }
+    </div>
+    <br />
+    <br />
+    <a asp-action="AllType" asp-route-type="Comedy" >Comedy Books</a>
+    <div class="part">
+
+        @foreach (var item in Model.Where(s => s.id < 9 && s.gener == "Comedy"))
+        {
+            <div class="item">
+                <img src="/image/@item.photo" alt="photo" />
+                <h2>@item.name</h2>
+                <a class="btn btn-primary" asp-action="Details" asp-route-id="@item.id">View Details</a>
+            </div>
+        }
+    </div>
+    <br />
+    <br />
+    <a asp-action="AllType" asp-route-type="Scientific">Scientific books</a>
+    <div class="part">
+
+        @foreach (var item in Model.Where(s => s.id < 13 && s.gener == "Scientific"))
+        {
+            <div class="item">
+                <img src="/image/@item.photo" alt="photo" />
+                <h2>@item.name</h2>
+                <a class="btn btn-primary" asp-action="Details" asp-route-id="@item.id">View Details</a>
+            </div>
+        }
+    </div>
+    <br />
+    <br />
+
+
+</body>
+</html>
