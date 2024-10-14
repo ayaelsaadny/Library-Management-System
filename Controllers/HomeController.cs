@@ -19,6 +19,7 @@ namespace book.Controllers
        
         public IActionResult AllBooks()
         {
+            Console.WriteLine("aya");
             var bookList = _context.books.ToList();
             return View(bookList);
         }
