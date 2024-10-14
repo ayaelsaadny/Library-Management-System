@@ -3,7 +3,7 @@ using book.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System.Diagnostics;
-
+using book.ViewModel;
 namespace book.Controllers
 {
     public class HomeController : Controller
