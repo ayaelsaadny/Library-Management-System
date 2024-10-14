@@ -38,6 +38,7 @@ namespace book.Controllers
         {
             Console.WriteLine("CRUD Operation");
             Console.WriteLine("CRUD Operation");
+            Console.WriteLine("CRUD Operation");
             return View();
         }
 
