@@ -36,6 +36,7 @@ namespace book.Controllers
 
         public IActionResult Privacy()
         {
+            Console.WriteLine("CRUD Operation");
             return View();
         }
 
