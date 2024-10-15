@@ -16,6 +16,7 @@ namespace book.Controllers
         }
         public IActionResult login()
         {
+            Console.WriteLine("new line");
             return View();
         }
         [HttpPost]
