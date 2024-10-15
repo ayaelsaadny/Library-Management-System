@@ -2,6 +2,8 @@ using book.Data;
 using book.Models;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
+using static Azure.Core.HttpHeader;
+using static System.Reflection.Metadata.BlobBuilder;
 
 namespace book.Controllers
 {
@@ -31,6 +33,12 @@ namespace book.Controllers
         {
             var booklist = _context.books.Where(b=> b.gener == type).ToList();
             return View(booklist);
+        }
+        public IActionResult search(string inpt)
+        {
+            var matchingBooks = _context.books.Where(p=> p.name.Contains(inpt)).ToList();
+
+            return View(matchingBooks);
         }
 
 

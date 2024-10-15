@@ -15,8 +15,8 @@
 </head>
 <body>
     <h1>  BookNest</h1>
-    <form class="d-flex">
-        <input class=" col-xs-4" type="search" placeholder="Search">
+    <form asp-action="search" asp-controller="Home" asp-route-inp="inpt" class="d-flex">
+        <input class=" col-xs-4" type="search" name="inpt" placeholder="Search">
         <button class="btn btn-secondary my-2 my-sm-0" type="submit">Search</button>
     </form>
     @RenderBody()
