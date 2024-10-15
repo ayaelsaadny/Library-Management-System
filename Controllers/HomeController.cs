@@ -1,8 +1,9 @@
 using book.Data;
 using book.Models;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using System.Diagnostics;
-
+using book.ViewModel;
 namespace book.Controllers
 {
     public class HomeController : Controller
@@ -32,9 +33,10 @@ namespace book.Controllers
             var booklist = _context.books.Where(b=> b.gener == type).ToList();
             return View(booklist);
         }
+		
 
 
-        public IActionResult Privacy()
+		public IActionResult Privacy()
         {
             Console.WriteLine("CRUD Operation");
             Console.WriteLine("CRUD Operation");
