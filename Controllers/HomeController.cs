@@ -27,6 +27,38 @@ namespace book.Controllers
             var book = _context.books.FirstOrDefault(b => b.id == id);
             return View(book);
         }
+        public IActionResult Delete(int id)
+        {
+            var book = _context.books.FirstOrDefault(b => b.id == id);
+            _context.books.Remove(book);
+            _context.SaveChanges();
+            return RedirectToAction("AllBooks");
+        }
+        public IActionResult Update(int id)
+        {
+            var book = _context.books.FirstOrDefault(b => b.id == id);
+            return View(book);
+        }
+        [HttpPost]
+        public IActionResult Update(Book model )
+        {
+            _context.books.Update(model);
+            _context.SaveChanges();
+            return RedirectToAction("AllBooks");
+        }
+
+        public IActionResult Add()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public IActionResult Add(Book model)
+        {
+            _context.books.Update(model);
+            _context.SaveChanges();
+            return RedirectToAction("AllBooks");
+        }
         public IActionResult AllType(string type)
         {
             var booklist = _context.books.Where(b=> b.gener == type).ToList();

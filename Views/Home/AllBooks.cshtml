@@ -19,7 +19,10 @@
                 <img src="/image/@item.photo" alt="photo" />
                 <h2>@item.name</h2>
                 <a class="btn btn-primary" asp-action="Details" asp-route-id="@item.id">View Details</a>
+                <a class="btn btn-primary" asp-action="Delete" asp-route-id="@item.id">Delete</a>
+                <a class="btn btn-primary" asp-action="Update" asp-route-id="@item.id">Update</a>
             </div>
+           
         }
     </div>
     <br />
@@ -33,7 +36,10 @@
                 <img src="/image/@item.photo" alt="photo" />
                 <h2>@item.name</h2>
                 <a class="btn btn-primary" asp-action="Details" asp-route-id="@item.id">View Details</a>
+                <a class="btn btn-primary" asp-action="Delete" asp-route-id="@item.id">Delete</a>
+                <a class="btn btn-primary" asp-action="Update" asp-route-id="@item.id">Update</a>
             </div>
+            
         }
     </div>
     <br />
@@ -47,9 +53,16 @@
                 <img src="/image/@item.photo" alt="photo" />
                 <h2>@item.name</h2>
                 <a class="btn btn-primary" asp-action="Details" asp-route-id="@item.id">View Details</a>
+                <a class="btn btn-primary" asp-action="Delete" asp-route-id="@item.id">Delete</a>
+                <a class="btn btn-primary" asp-action="Update" asp-route-id="@item.id">Update</a>
             </div>
+
         }
+
+        
     </div>
+
+    <a class="btn btn-primary fixed-bottom ms-auto" asp-action="Add">Add</a>
     <br />
     <br />
 
