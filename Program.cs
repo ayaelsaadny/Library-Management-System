@@ -43,7 +43,7 @@ namespace book
 
             app.MapControllerRoute(
                 name: "default",
-                pattern: "{controller=Accounts}/{action=login}/{id?}");
+                pattern: "{controller=Home}/{action=AllBooks}/{id?}");
 
             app.Run();
 
