@@ -49,7 +49,7 @@ namespace book.Controllers
             return View(matchingBooks);
         }
 
-		public IActionResult Privacy()
+        public IActionResult Privacy()
         {
             Console.WriteLine("CRUD Operation");
             Console.WriteLine("CRUD Operation");
