@@ -28,9 +28,9 @@
                          }
 
                 <b>Type : @Model.gener</b>
-                <b>Auther: @Model.Author</b>
-                <a class="btn btn-success">Borrow</a>
-                <button class="btn btn-dark">Buy</button>
+                <b>Author: @Model.Author</b>
+        <a class="btn btn-success" asp-controller="Borrow" asp-action="Borrow" asp-route-id="@Model.id">Borrow</a>
+        <a class="btn btn-secondary" asp-controller="Borrow" asp-action="Buy" asp-route-id="@Model.id">Buy</a>
                 <a class="btn btn-primary" asp-action="AllBooks">Home Page</a>
               </div>
 </body>

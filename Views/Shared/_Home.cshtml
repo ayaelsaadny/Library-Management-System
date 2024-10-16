@@ -2,21 +2,77 @@
 
 <html>
 <head>
-    <link href="~/lib/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet"/>
+    <link href="~/lib/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" />
     <style>
-        body{
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        h1 {
+            margin: 0;
+            font-size: 36px;
+        }
+
+        .login-Register {
+            display: flex;
+            align-items: center;
+        }
+
+            .login-Register a {
+                margin-left: 20px;
+                text-decoration: none;
+                font-size: 18px;
+                color: inherit;
+            }
+
+            .login-Register a {
+                margin-left: 10px;
+                text-decoration: none;
+                color: inherit;
+            }
+
+                .login-Register a:hover {
+                    text-decoration: underline;
+                }
+
+        .d-flex {
+            display: flex;
+            align-items: center;
+            margin-top: 10px;
+        }
+
+        .col-xs-4 {
+            margin-right: 10px;
+            padding: 5px;
+        }
+
+        body {
             background-color: #f4f4f4;
         }
-        form{
+
+        form {
             margin-top: 10px;
-            margin-left:41%;
+            margin-left: 41%;
         }
     </style>
 </head>
 <body>
-    <h1>  BookNest</h1>
-    <form asp-action="search" asp-controller="Home" asp-route-inp="inpt" class="d-flex">
-        <input class=" col-xs-4" type="search" name="inpt" placeholder="Search">
+    <div class="header">
+        <h1>BookNest</h1>
+        @if (!User.Identity.IsAuthenticated)
+        {
+            <div class="login-Register">
+                <a asp-controller="Accounts" asp-action="login">Login</a>
+                <a asp-controller="Accounts" asp-action="register">Register</a>
+            </div>
+        }
+    </div>
+
+    <form class="d-flex">
+        <input class=" col-xs-4" type="search" placeholder="Search">
         <button class="btn btn-secondary my-2 my-sm-0" type="submit">Search</button>
     </form>
     @RenderBody()

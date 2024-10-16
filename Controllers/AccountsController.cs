@@ -16,6 +16,7 @@ namespace book.Controllers
         }
         public IActionResult login()
         {
+            Console.WriteLine("new line");
             return View();
         }
         [HttpPost]
@@ -44,7 +45,7 @@ namespace book.Controllers
             return View();
         }
         [HttpPost]
-        public IActionResult register(registerViewModel model)
+        public async Task<IActionResult> register(registerViewModel model)
         {
             if (ModelState.IsValid)
             {
@@ -56,9 +57,11 @@ namespace book.Controllers
                     LastName = model.LastName,
                 };
                 var result = _userManager.CreateAsync(user, model.password).Result;
+                await _userManager.AddToRoleAsync(user, ClassRoles.roleUser);
                 if (result.Succeeded)
                 {
-                    return RedirectToAction("AllBooks", "Home");
+                   
+                    return RedirectToAction("login", "Accounts");
                 }
                 foreach (var error in result.Errors)
                 {

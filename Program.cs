@@ -22,7 +22,7 @@ namespace book
                }
                 );
 
-            builder.Services.AddIdentity<ApplicationUser, IdentityRole>().AddEntityFrameworkStores<ApplicationDbContext>();
+            builder.Services.AddIdentity<ApplicationUser, IdentityRole>().AddEntityFrameworkStores<ApplicationDbContext>().AddDefaultTokenProviders();
 
             var app = builder.Build();
 
@@ -46,6 +46,8 @@ namespace book
                 pattern: "{controller=Home}/{action=AllBooks}/{id?}");
 
             app.Run();
+
+            
         }
     }
 }
