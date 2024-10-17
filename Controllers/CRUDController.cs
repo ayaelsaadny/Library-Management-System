@@ -21,8 +21,10 @@ namespace book.Controllers
             var book = _context.books.FirstOrDefault(b => b.id == id);
             _context.books.Remove(book);
             _context.SaveChanges();
-            return RedirectToAction("AllBooks");
+            return RedirectToAction("AllBooks" , "Home");
         }
+        
+
         public IActionResult Update(int id)
         {
             var book = _context.books.FirstOrDefault(b => b.id == id);
@@ -33,7 +35,7 @@ namespace book.Controllers
         {
             _context.books.Update(model);
             _context.SaveChanges();
-            return RedirectToAction("AllBooks");
+            return RedirectToAction("AllBooks" , "Home");
         }
 
         public IActionResult Add()
@@ -46,13 +48,9 @@ namespace book.Controllers
         {
             _context.books.Update(model);
             _context.SaveChanges();
-            return RedirectToAction("AllBooks");
+            return RedirectToAction("AllBooks" , "Home");
         }
-        public IActionResult AllType(string type)
-        {
-            var booklist = _context.books.Where(b => b.gener == type).ToList();
-            return View(booklist);
-        }
+        
 
     }
 }

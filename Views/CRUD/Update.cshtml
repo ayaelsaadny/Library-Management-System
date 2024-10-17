@@ -6,25 +6,25 @@
 @model Book
 
 
-<form asp-action="ForEmployee" method="post">
+<form asp-action="Update" method="post">
     <label class="text-primary">name</label>
-    <input class="form-control" asp-action-for="name" />
+    <input class="form-control" asp-for="name" />
     <br />
 
     <label class="text-primary">gener</label>
-    <input class="form-control" asp-action-for="gener" />
+    <input class="form-control" asp-for="gener" />
     <br />
 
     <label class="text-primary">avalibilty</label>
-    <input class="form-control" asp-action-for="avalibilty" />
+    <input class="form-control" asp-for="avalibilty" />
     <br />
 
     <label class="text-primary">photo</label>
-    <input class="form-control" asp-action-for="photo" />
+    <input class="form-control" asp-for="photo" />
     <br />
 
     <label class="text-primary">Author</label>
-    <input class="form-control" asp-action-for="Author" />
+    <input class="form-control" asp-for="Author" />
     <br />
 
     <button type="submit" asp-action="Update">Update</button>

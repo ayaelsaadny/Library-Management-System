@@ -32,6 +32,11 @@
         <a class="btn btn-success" asp-controller="Borrow" asp-action="Borrow" asp-route-id="@Model.id">Borrow</a>
         <a class="btn btn-secondary" asp-controller="Borrow" asp-action="Buy" asp-route-id="@Model.id">Buy</a>
                 <a class="btn btn-primary" asp-action="AllBooks">Home Page</a>
+        @if (ViewContext.HttpContext.User.IsInRole("Admin"))
+        {
+            <a class="btn btn-primary" asp-controller="CRUD" asp-action="Delete" asp-route-id="@Model.id">Delete</a>
+            <a class="btn btn-primary" asp-controller="CRUD" asp-action="Update" asp-route-id="@Model.id">Update</a>
+        }
               </div>
 </body>
 </html >
