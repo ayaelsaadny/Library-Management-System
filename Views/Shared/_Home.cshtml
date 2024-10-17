@@ -127,21 +127,24 @@
             background-color: #0056b3;
         }
 
-        /* Footer Add Button */
-        .fixed-bottom {
-            position: fixed;
-            bottom: 20px;
-            right: 20px;
-            background-color: #28a745;
-            padding: 10px 20px;
-            font-size: 18px;
-            border-radius: 5px;
-            color: white;
+        .button-container {
+            text-align: right; /* Align the button to the right */
+            margin-top: 40px;
         }
 
-        .fixed-bottom:hover {
-            background-color: #218838;
+        .add-button {
+            padding: 10px 20px;
+            background-color: #28a745;
+            color: white;
+            border-radius: 5px;
+            font-size: 18px;
+            text-decoration: none;
+            transition: background-color 0.3s ease;
         }
+
+            .add-button:hover {
+                background-color: #218838;
+            }
     </style>
 </head>
 <body>
@@ -154,6 +157,13 @@
                 <a asp-controller="Accounts" asp-action="register">Register</a>
             </div>
         }
+        @if (User.Identity.IsAuthenticated)
+        {
+            <form asp-controller="Accounts" asp-action="Logout" method="post">
+                <button type="submit" class="btn btn-danger">Logout</button>
+            </form>
+        }
+
     </div>
 
     <form class="d-flex">

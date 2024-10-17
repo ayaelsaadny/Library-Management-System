@@ -70,7 +70,9 @@
     <br />
     @if (ViewContext.HttpContext.User.IsInRole("Admin"))
     {
-        <a class="btn btn-primary fixed-bottom ms-auto" asp-controller="CRUD" asp-action="Add">Add</a>
+        <div class="button-container">
+            <a class="btn btn-success add-button" asp-controller="CRUD" asp-action="Add">Add New Book</a>
+        </div>
     }
    
     <br />
