@@ -4,58 +4,143 @@
 <head>
     <link href="~/lib/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" />
     <style>
+        body {
+            background-color: #f8f9fa;
+            font-family: 'Arial', sans-serif;
+        }
+
+        /* Header Styling */
         .header {
+            background-color: #343a40;
+            color: white;
+            padding: 20px;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-bottom: 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            margin-bottom: 40px;
         }
 
         h1 {
             margin: 0;
-            font-size: 36px;
+            font-size: 32px;
+            font-weight: bold;
         }
 
-        .login-Register {
+        .login-Register a {
+            margin-left: 20px;
+            font-size: 18px;
+            color: #fff;
+            text-decoration: none;
+            padding: 8px 16px;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+        }
+
+        .login-Register a:hover {
+            background-color: #007bff;
+            text-decoration: none;
+        }
+
+        /* Search Bar Styling */
+        form.d-flex {
+            justify-content: center;
+            margin-bottom: 30px;
+        }
+
+        input[type="search"] {
+            width: 300px;
+            padding: 10px;
+            border-radius: 5px;
+            border: 1px solid #ced4da;
+            font-size: 16px;
+        }
+
+        button {
+            margin-left: 10px;
+            padding: 10px 20px;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+
+        /* Book List Styling */
+        .part {
             display: flex;
-            align-items: center;
+            flex-wrap: wrap;
+            justify-content: space-between;
         }
 
-            .login-Register a {
-                margin-left: 20px;
-                text-decoration: none;
-                font-size: 18px;
-                color: inherit;
-            }
-
-            .login-Register a {
-                margin-left: 10px;
-                text-decoration: none;
-                color: inherit;
-            }
-
-                .login-Register a:hover {
-                    text-decoration: underline;
-                }
-
-        .d-flex {
-            display: flex;
-            align-items: center;
-            margin-top: 10px;
+        .item {
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            width: 30%;
+            margin-bottom: 40px;
+            padding: 20px;
+            text-align: center;
+            transition: transform 0.3s ease;
         }
 
-        .col-xs-4 {
-            margin-right: 10px;
-            padding: 5px;
+        .item:hover {
+            transform: translateY(-10px);
         }
 
-        body {
-            background-color: #f4f4f4;
+        .item img {
+            max-width: 100%;
+            border-radius: 10px;
+            margin-bottom: 15px;
         }
 
-        form {
-            margin-top: 10px;
-            margin-left: 41%;
+        .item h2 {
+            font-size: 22px;
+            margin-bottom: 15px;
+            color: #343a40;
+        }
+
+        .item .btn {
+            padding: 8px 16px;
+            font-size: 14px;
+        }
+
+        /* Category Links Styling */
+        a[asp-action="AllType"] {
+            display: block;
+            margin: 20px 0;
+            font-size: 20px;
+            color: #007bff;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        a[asp-action="AllType"]:hover {
+            color: #0056b3;
+            text-decoration: underline;
+        }
+
+        /* Admin Action Buttons */
+        .btn-primary {
+            background-color: #007bff;
+            border: none;
+        }
+
+        .btn-primary:hover {
+            background-color: #0056b3;
+        }
+
+        /* Footer Add Button */
+        .fixed-bottom {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background-color: #28a745;
+            padding: 10px 20px;
+            font-size: 18px;
+            border-radius: 5px;
+            color: white;
+        }
+
+        .fixed-bottom:hover {
+            background-color: #218838;
         }
     </style>
 </head>
