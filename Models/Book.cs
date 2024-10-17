@@ -8,6 +8,6 @@
         public  bool avalibilty { get; set; }
         public  string photo { get; set; }
         public string Author { get; set; }
-        
+        public  int bookCount { get; set; }
     }
 }

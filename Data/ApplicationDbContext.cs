@@ -8,7 +8,7 @@ namespace book.Data
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     {
         public DbSet<Book> books { get; set; }
-       
+
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options)
         {
              

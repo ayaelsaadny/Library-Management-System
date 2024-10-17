@@ -154,6 +154,14 @@
                 <a asp-controller="Accounts" asp-action="register">Register</a>
             </div>
         }
+        else
+        {
+            <div class="login-Register">
+                <a asp-controller="Accounts" asp-action="logout">Logout</a>
+                <div class="nav-link" style="margin-left: 10px;">Welcome, @User.Identity.Name!</div>
+            </div>
+
+        }
     </div>
 
     <form class="d-flex">
