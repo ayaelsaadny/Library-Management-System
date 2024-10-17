@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace book.Controllers
 {
-    [Authorize(Roles = $"{ClassRoles.roleUser},{ClassRoles.roleAdmin}")]
+    [Authorize(Roles = $"{ClassRoles.roleAdmin}")]
     public class CRUDController : Controller
     {
         private readonly ApplicationDbContext _context;

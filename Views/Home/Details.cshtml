@@ -7,36 +7,103 @@
 <html>
     <head>
         <style>
-            
-            .card img{
-                width:600px;
-                height:500px;
-                border-radius:20px;
+            .details-container {
+                max-width: 800px;
+                margin: 40px auto;
+                text-align: center;
+            }
+
+            /* Image Styling */
+            .details-container img {
+                width: 400px;
+                height: 400px;
+                border-radius: 15px;
+                margin-bottom: 20px;
+            }
+
+            /* Text Styling */
+            .details-container h2 {
+                font-size: 28px;
+                color: #343a40;
+                margin-bottom: 20px;
+            }
+
+            .details-container b {
+                display: block;
+                font-size: 18px;
+                margin-bottom: 10px;
+                color: #495057;
+            }
+
+            /* Button Styling */
+            .details-container a {
+                display: inline-block;
+                padding: 10px 20px;
+                margin: 10px 5px;
+                font-size: 16px;
+                color: white;
+                background-color: #007bff;
+                border-radius: 5px;
+                text-decoration: none;
+                transition: background-color 0.3s ease;
+            }
+
+            .details-container a.btn-success {
+                background-color: #28a745;
+            }
+
+            .details-container a.btn-secondary {
+                background-color: #6c757d;
+            }
+
+            .details-container a:hover {
+                background-color: #0056b3;
+            }
+
+            .btn-success:hover {
+                background-color: #218838;
+            }
+
+            .btn-secondary:hover {
+                background-color: #5a6268;
+            }
+
+            /* Admin Buttons */
+            .admin-actions {
+                margin-top: 20px;
             }
         </style>
     </head>
     <body>
-              <div class="card">
-                <img src="/image/@Model.photo" alt="Photo" />
-                   <h2>Name : @Model.name</h2>
-                         @if(@Model.avalibilty ){
-                              <b>Book is Available</b>
-                         }
-                         else
-                         {
-                              <b>Book isn't Available</b>
-                         }
+    <div class="details-container">
+        <img src="/image/@Model.photo" alt="Photo of @Model.name" />
+        <h2>Name: @Model.name</h2>
 
-                <b>Type : @Model.gener</b>
-                <b>Author: @Model.Author</b>
+        @if (@Model.avalibilty)
+        {
+            <b>Book is Available</b>
+        }
+        else
+        {
+            <b>Book isn't Available</b>
+        }
+
+        <b>Type: @Model.gener</b>
+        <b>Author: @Model.Author</b>
+
+        <!-- Buttons for Borrowing and Buying -->
         <a class="btn btn-success" asp-controller="Borrow" asp-action="Borrow" asp-route-id="@Model.id">Borrow</a>
         <a class="btn btn-secondary" asp-controller="Borrow" asp-action="Buy" asp-route-id="@Model.id">Buy</a>
-                <a class="btn btn-primary" asp-action="AllBooks">Home Page</a>
+        <a class="btn btn-primary" asp-action="AllBooks">Home Page</a>
+
+        <!-- Admin Controls (Only if the user is an admin) -->
         @if (ViewContext.HttpContext.User.IsInRole("Admin"))
         {
-            <a class="btn btn-primary" asp-controller="CRUD" asp-action="Delete" asp-route-id="@Model.id">Delete</a>
-            <a class="btn btn-primary" asp-controller="CRUD" asp-action="Update" asp-route-id="@Model.id">Update</a>
+            <div class="admin-actions">
+                <a class="btn btn-primary" asp-controller="CRUD" asp-action="Delete" asp-route-id="@Model.id">Delete</a>
+                <a class="btn btn-primary" asp-controller="CRUD" asp-action="Update" asp-route-id="@Model.id">Update</a>
+            </div>
         }
-              </div>
+    </div>
 </body>
 </html >
