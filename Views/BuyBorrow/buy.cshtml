@@ -1,4 +1,4 @@
-﻿@model Book
+﻿
 
 @* <h2>@Model.name</h2>
 <b>@Model.price</b>
@@ -10,10 +10,49 @@
 <a class="btn btn-primary" asp-controller="Home" asp-action="AllBooks">Home page</a>
  *@
 
-<h2>@Model.name</h2>
+@* <h2>@Model.name</h2>
 <b>@Model.price</b>
 <form method="post" asp-controller="BuyBorrow" asp-action="buy">
     @Html.AntiForgeryToken()
-    <input type="hidden" name="bookId" value="@Model.id" />
+    <input type="hidden" name="bookId" value="@Model.Bod" />
     <button type="submit">Buy</button>
-</form>
+</form> *@
+@model IEnumerable<book.Models.Book> 
+
+@{
+    ViewBag.Title = "Available Books";
+}
+
+<h1>Available Books</h1>
+
+@if (TempData["Message"] != null)
+{
+    <div class="alert alert-success">
+        @TempData["Message"]
+    </div>
+}
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Title</th>
+            <th>Author</th>
+            <th>Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var book in Model)
+        {
+            <tr>
+                <td>@book.name</td>
+                <td>@book.Author</td>
+                <td>
+                    <form asp-action="Borrow" method="post">
+                        <input type="hidden" name="bookId" value="@book.id" />
+                        <button type="submit" class="btn btn-primary">Borrow</button>
+                    </form>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
