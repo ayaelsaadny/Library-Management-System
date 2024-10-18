@@ -11,7 +11,7 @@
        
         public int CountNum { get; set; }
         public virtual ICollection<Buy> UserBooks { get; set; } = new List<Buy>();
-
+        public List<Borrow> Borrows { get; set; }
         public  int price { get; set; }
     }
 }

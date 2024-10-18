@@ -29,6 +29,7 @@ namespace book.Controllers
         public IActionResult AllBooks()
         {
             var bookList = _context.books.ToList();
+
             return View(bookList);
         }
         public IActionResult Details(int id)
@@ -56,6 +57,9 @@ namespace book.Controllers
             Console.WriteLine("CRUD Operation");
             return View();
         }
+
+
+
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
