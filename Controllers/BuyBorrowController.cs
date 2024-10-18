@@ -23,10 +23,11 @@ namespace book.Controllers
         }
 
         [HttpPost]
+        [Authorize(Roles = "User")]
         [ValidateAntiForgeryToken]
         public IActionResult buy(int bookId)
         {
-            var user = _userManager.GetUserId(User);
+            var user =  _userManager.GetUserId(User);
             if (user == null)
             {
                 return RedirectToAction("login", "Accounts");
@@ -39,9 +40,39 @@ namespace book.Controllers
             };
 
             _context.buys.Add(purchase);
-            _context.SaveChanges();
+             _context.SaveChanges();
             return RedirectToAction("AllBooks", "Home");
         }
-       
+
+        [Authorize(Roles = "User")] 
+        [HttpPost] 
+        public IActionResult Borrow(int bookId)
+        {
+            var user =  _userManager.GetUserId(User); 
+            if (user == null)
+            {
+                return RedirectToAction("login", "Accounts"); 
+            }
+
+          
+            var borrow = new Borrow
+            {
+                UserId = user, 
+                BookId = bookId,  
+                BorrowDate = DateTime.Now,  
+                EndDate = DateTime.Now.AddDays(6) 
+            };
+
+            
+            _context.Add(borrow); 
+            _context.SaveChanges();
+
+          
+            return RedirectToAction("AllBooks", "Home");
+        }
+
+
+
+
     }
 }
