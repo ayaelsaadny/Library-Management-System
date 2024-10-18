@@ -23,7 +23,7 @@ namespace book.Controllers
         }
 
         [HttpPost]
-        [Authorize(Roles = "User")]
+        //[Authorize(Roles = "User")]
         [ValidateAntiForgeryToken]
         public IActionResult buy(int bookId)
         {
@@ -44,7 +44,7 @@ namespace book.Controllers
             return RedirectToAction("AllBooks", "Home");
         }
 
-        [Authorize(Roles = "User")] 
+        //[Authorize(Roles = "User")] 
         [HttpPost] 
         public IActionResult Borrow(int bookId)
         {
