@@ -1,6 +1,7 @@
 ﻿using book.Data;
 using book.Models;
 using book.ViewModel;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -12,31 +13,6 @@ namespace book.Controllers
     {
         private readonly ApplicationDbContext _context;
 
-        //public BuyBorrowController(ApplicationDbContext context)
-        //{
-
-        //    _context = context;
-        //}
-
-        //public IActionResult buy(int id)
-        //{
-        //    var book = _context.books.FirstOrDefault(b => b.id == id);
-        //    return View(book);
-        //}
-        //[HttpPost]
-        //public IActionResult buy(BuyVM model)
-        //{
-        //    var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
-
-        //    var viewModel = new BuyVM
-        //    {
-        //        UserId = userId,
-        //        BookId = book.id,
-        //        BookName = book.name,
-        //        UserName = User.Identity.Name
-        //    };
-        //    RedirectToAction("AllBooks", "Home");
-        //}
 
         private readonly UserManager<ApplicationUser> _userManager;
 
@@ -45,15 +21,12 @@ namespace book.Controllers
             _context = context;
             _userManager = userManager;
         }
-        public IActionResult buy()
-        {
-            return View();
-        }
+
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> buy(int bookId)
+        public IActionResult buy(int bookId)
         {
-            var user = await _userManager.GetUserAsync(User);
+            var user = _userManager.GetUserId(User);
             if (user == null)
             {
                 return RedirectToAction("login", "Accounts");
@@ -61,13 +34,14 @@ namespace book.Controllers
 
             var purchase = new Buy
             {
-                UserId = user.Id,
+                UserId = user,
                 BookId = bookId
             };
 
             _context.buys.Add(purchase);
-            await _context.SaveChangesAsync();
+            _context.SaveChanges();
             return RedirectToAction("AllBooks", "Home");
         }
+       
     }
 }
