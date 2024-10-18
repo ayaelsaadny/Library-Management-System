@@ -46,10 +46,6 @@ namespace book.Controllers
             _userManager = userManager;
         }
 
-        public IActionResult buy()
-        {
-            return View();
-        }
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> buy(int bookId)
