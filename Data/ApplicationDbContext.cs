@@ -6,10 +6,12 @@ using Microsoft.EntityFrameworkCore;
 namespace book.Data
 {
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
-    {
-        public DbSet<Buy> buys { get; set; }
-        public DbSet<Book> books { get; set; }
+    { 
 
+        public DbSet<ApplicationUser> ApplicationUsers { get; set; }
+    public DbSet<Buy> buys { get; set; }
+        public DbSet<Book> books { get; set; }
+        public DbSet<Borrow> Borrows { get; set; }    
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options)
         {
              

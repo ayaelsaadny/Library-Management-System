@@ -1,6 +1,7 @@
 ﻿using book.Data;
 using book.Models;
 using book.ViewModel;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -47,10 +48,11 @@ namespace book.Controllers
         }
 
         [HttpPost]
+        [Authorize(Roles = "User")]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> buy(int bookId)
+        public IActionResult buy(int bookId)
         {
-            var user = await _userManager.GetUserAsync(User);
+            var user =  _userManager.GetUserId(User);
             if (user == null)
             {
                 return RedirectToAction("login", "Accounts");
@@ -58,13 +60,44 @@ namespace book.Controllers
 
             var purchase = new Buy
             {
-                UserId = user.Id,
+                UserId = user,
                 BookId = bookId
             };
 
             _context.buys.Add(purchase);
-            await _context.SaveChangesAsync();
+             _context.SaveChanges();
             return RedirectToAction("AllBooks", "Home");
         }
+
+        [Authorize(Roles = "User")] 
+        [HttpPost] 
+        public IActionResult Borrow(int bookId)
+        {
+            var user =  _userManager.GetUserId(User); 
+            if (user == null)
+            {
+                return RedirectToAction("login", "Accounts"); 
+            }
+
+          
+            var borrow = new Borrow
+            {
+                UserId = user, 
+                BookId = bookId,  
+                BorrowDate = DateTime.Now,  
+                EndDate = DateTime.Now.AddDays(6) 
+            };
+
+            
+            _context.Add(borrow); 
+            _context.SaveChanges();
+
+          
+            return RedirectToAction("AllBooks", "Home");
+        }
+
+
+
+
     }
 }
