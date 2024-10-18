@@ -92,8 +92,9 @@ namespace book.Controllers
             _context.Add(borrow); 
             _context.SaveChanges();
 
-          
-            return RedirectToAction("AllBooks", "Home");
+
+            TempData["Message"] = "you can come and get it anytime";
+            return RedirectToAction("Borrow");
         }
 
 
