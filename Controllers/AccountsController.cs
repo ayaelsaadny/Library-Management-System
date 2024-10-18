@@ -60,8 +60,8 @@ namespace book.Controllers
                 await _userManager.AddToRoleAsync(user, ClassRoles.roleUser);
                 if (result.Succeeded)
                 {
-                   
-                    return RedirectToAction("login", "Accounts");
+
+                    return RedirectToAction("AllBooks", "Home");
                 }
                 foreach (var error in result.Errors)
                 {

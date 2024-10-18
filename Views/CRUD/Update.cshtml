@@ -5,28 +5,50 @@
 }
 @model Book
 
+<style>
+    btn {
+        padding: 12px 30px; 
+        font-size: 18px; 
+        border-radius: 5px; 
+        transition: background-color 0.3s ease, transform 0.3s ease; 
+    }
 
-<form asp-action="Update" method="post">
-    <label class="text-primary">name</label>
-    <input class="form-control" asp-for="name" />
-    <br />
+    .btn:hover {
+        background-color: #0056b3; 
+        transform: translateY(-2px); 
+</style>
 
-    <label class="text-primary">gener</label>
-    <input class="form-control" asp-for="gener" />
-    <br />
+<form asp-action="Update" method="post" class="container mt-5">
+    <fieldset class="border p-4 rounded shadow-sm">
+        <legend class="w-auto text-primary font-weight-bold">Update Book Information</legend>
+        <div class="form-group">
+        <label class="text-primary">name</label>
+        <input class="form-control" asp-for="name" />
+        </div>
+        <br />
+        <div class="form-group">
+        <label class="text-primary">gener</label>
+        <input class="form-control" asp-for="gener" />
+        </div>
+        <br />
+        <div class="form-group">
+        <label class="text-primary">avalibilty</label>
+        <input class="form-control" asp-for="avalibilty" />
+        </div>
+        <br />
+        <div class="form-group">
+        <label class="text-primary">photo</label>
+        <input class="form-control" asp-for="photo" />
+        </div>
+        <br />
+        <div class="form-group">
+        <label class="text-primary">Author</label>
+        <input class="form-control" asp-for="Author" />
+        <br />
+        </div>
+        <div class="text-center mt-4">
+            <button type="submit" class="btn btn-primary btn-lg" asp-action="Update">Update</button>
+        </div>
 
-    <label class="text-primary">avalibilty</label>
-    <input class="form-control" asp-for="avalibilty" />
-    <br />
-
-    <label class="text-primary">photo</label>
-    <input class="form-control" asp-for="photo" />
-    <br />
-
-    <label class="text-primary">Author</label>
-    <input class="form-control" asp-for="Author" />
-    <br />
-
-    <button type="submit" asp-action="Update">Update</button>
-
+    </fieldset>
 </form>

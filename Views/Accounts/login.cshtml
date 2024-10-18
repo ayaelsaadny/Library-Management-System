@@ -1,19 +1,34 @@
 ﻿@using book.ViewModel;
+@{
+    ViewData["Title"] = "Login";
+    Layout = "~/Views/Shared/AuthLayout.cshtml";
+}
 @model loginViewModel
- <html>
-     <head>
-         <link href="~/css/login.css" rel="stylesheet"/>
-     </head>
-     <body>
-         <div class="login-page">
-  <div class="form">
-    <form asp-action="login" method="post" class="login-form">
-      <input asp-for="email" type="text" placeholder="Email" />
-      <input asp-for="password" type="password" placeholder="password"/>
-      <button type="submit">login</button>
-      <p class="message">Not registered? <a href="/Accounts/register">Create an account</a></p>
-    </form>
-  </div>
-</div>
-     </body>
- </html>
+
+
+<div asp-validation-summary="All"></div>
+
+<html>
+<head>
+    <link href="~/lib/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/css/style.css" rel="stylesheet" />
+</head>
+<body>
+    <div class="login-page">
+        <div class="form">
+            <form asp-action="login" method="post" class="login-form">
+                <div class="form-holder">
+                    <span class="lnr lnr-envelope"></span>
+                    <input asp-for="email" type="text" class="form-control" placeholder="username">
+                </div>
+                <div class="form-holder">
+                    <span class="lnr lnr-lock"></span>
+                    <input asp-for="password" type="password" class="form-control" placeholder="Password">
+                </div>
+                <button type="submit">login</button>
+                <p class="message">Not registered? <a asp-action="Register">Create an account</a></p>
+            </form>
+        </div>
+    </div>
+</body>
+</html>
