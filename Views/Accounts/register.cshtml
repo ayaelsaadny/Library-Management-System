@@ -1,23 +1,33 @@
 ﻿@using book.ViewModel;
+@{
+    ViewData["Title"] = "Register";
+    Layout = "~/Views/Shared/AuthLayout.cshtml";
+}
 @model registerViewModel
-<html>
-    <head>
-        <link href="~/css/login.css" rel="stylesheet" />
-    </head>
-    <body>
-        <div class="login-page">
-  <div class="form">
-     <form asp-action="register" method="post" class="login-form">
-      <input asp-for="FirstName" type="text" placeholder="FirstName"/>
-      <input asp-for="LastName" type="text" placeholder="LastName" />
-      <input asp-for="username" type="text" placeholder="UserName" />
-      <input  asp-for="email" type="text" placeholder="email address" />
-      <input asp-for="password" type="password" placeholder="password"/>
-      
-      <button type="submit">create</button>
-      <p class="message">Already registered? <a href="/Accounts/login">Sign In</a></p>
-    </form>
-  </div>
-</div>
-    </body>
-</html>
+<link rel="stylesheet" href="~/css/style.css">
+
+<form asp-action="register" method="post">
+	<h3>New Account?</h3>
+	<div class="form-holder">
+		<span class="lnr lnr-phone-handset"></span>
+		<input asp-for="FirstName" type="text" class="form-control" placeholder="First Name">
+	</div>
+	<div class="form-holder">
+		<span class="lnr lnr-phone-handset"></span>
+		<input asp-for="LastName" type="text" class="form-control" placeholder="Last Name">
+	</div>
+	<div class="form-holder">
+		<span class="lnr lnr-user"></span>
+		<input asp-for="username" type="text" class="form-control" placeholder="Username">
+	</div>
+	<div class="form-holder">
+		<span class="lnr lnr-envelope"></span>
+		<input asp-for="email" type="text" class="form-control" placeholder="Mail">
+	</div>
+	<div class="form-holder">
+		<span class="lnr lnr-lock"></span>
+		<input asp-for="password" type="password" class="form-control" placeholder="Password">
+	</div>
+	<button type="submit">Register</button>
+	<center><p class="message">Already registered? <a asp-action="login">Login</a></p></center>
+</form>
