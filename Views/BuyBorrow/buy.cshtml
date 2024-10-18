@@ -1,0 +1,11 @@
+﻿@model Book
+
+<h2>@Model.name</h2>
+<b>@Model.price</b>
+
+<form asp-action="buy" method="post">
+    <input type="hidden" name="bookId" value="@Model.id" />
+    <button type="submit" class="btn btn-primary">Confirm Purchase</button>
+</form>
+<a class="btn btn-primary" asp-controller="Home" asp-action="AllBooks">Home page</a>
+

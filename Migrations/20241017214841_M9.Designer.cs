@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using book.Data;
 
@@ -11,9 +12,11 @@ using book.Data;
 namespace book.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20241017214841_M9")]
+    partial class M9
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -51,15 +54,15 @@ namespace book.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "831b280a-d285-4826-82d9-790e3126b2b1",
-                            ConcurrencyStamp = "d3469ee7-bc17-4c68-8822-3a44f62b9fa2",
+                            Id = "828c00d0-9936-4898-89ab-3ba55f01486e",
+                            ConcurrencyStamp = "84db53f4-ef47-4d3f-bd33-9d2702ca8a6c",
                             Name = "Admin",
                             NormalizedName = "admin"
                         },
                         new
                         {
-                            Id = "08d7052a-6723-439a-9015-a74a20b822c0",
-                            ConcurrencyStamp = "acb2a0cb-c616-4813-9f98-4fe2f609ff1a",
+                            Id = "ce1bb028-ae3a-4911-a17a-f2e630827af7",
+                            ConcurrencyStamp = "68dbbe85-fbbe-4cea-95d6-452aadadf232",
                             Name = "User",
                             NormalizedName = "user"
                         });
@@ -274,9 +277,6 @@ namespace book.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("price")
-                        .HasColumnType("int");
-
                     b.HasKey("id");
 
                     b.ToTable("books");
@@ -290,14 +290,11 @@ namespace book.Migrations
                     b.Property<int>("BookId")
                         .HasColumnType("int");
 
-                    b.Property<int>("Id")
-                        .HasColumnType("int");
-
                     b.HasKey("UserId", "BookId");
 
                     b.HasIndex("BookId");
 
-                    b.ToTable("buys");
+                    b.ToTable("Buy");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>

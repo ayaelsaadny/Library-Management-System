@@ -7,6 +7,7 @@ namespace book.Data
 {
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     {
+        public DbSet<Buy> buys { get; set; }
         public DbSet<Book> books { get; set; }
 
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options)
@@ -30,10 +31,27 @@ namespace book.Data
                      Name = "User",
                      NormalizedName = "user",
                      ConcurrencyStamp = Guid.NewGuid().ToString(),
-                 });
+                 }
+                 );
 
+            // Configure the many-to-many relationship
+            builder.Entity<Buy>()
+                .HasKey(ub => new { ub.UserId, ub.BookId }); // Composite primary key
+
+            builder.Entity<Buy>()
+                .HasOne(ub => ub.User)
+                .WithMany(u => u.UserBooks)
+                .HasForeignKey(ub => ub.UserId);
+
+            builder.Entity<Buy>()
+                .HasOne(ub => ub.Book)
+                .WithMany(b => b.UserBooks)
+                .HasForeignKey(ub => ub.BookId);
+
+          
 
             base.OnModelCreating(builder);
+
         }
     }
 }
