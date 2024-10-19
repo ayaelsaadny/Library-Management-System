@@ -1,0 +1,28 @@
+﻿@model IEnumerable<book.Models.Buy>
+
+@{
+    ViewBag.Title = "My Bought Books";
+}
+
+<h2>My Bought Books</h2>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Book Title</th>
+            <th>Book Price</th>
+           
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var purchase in Model)
+        {
+            <tr>
+                <td>@purchase.Book.name</td>
+                <td>@purchase.Book.price</td>
+               
+
+            </tr>
+        }
+    </tbody>
+</table>

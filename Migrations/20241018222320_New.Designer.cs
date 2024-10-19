@@ -12,8 +12,8 @@ using book.Data;
 namespace book.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20241018174228_M10")]
-    partial class M10
+    [Migration("20241018222320_New")]
+    partial class New
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -50,22 +50,6 @@ namespace book.Migrations
                         .HasFilter("[NormalizedName] IS NOT NULL");
 
                     b.ToTable("AspNetRoles", (string)null);
-
-                    b.HasData(
-                        new
-                        {
-                            Id = "831b280a-d285-4826-82d9-790e3126b2b1",
-                            ConcurrencyStamp = "d3469ee7-bc17-4c68-8822-3a44f62b9fa2",
-                            Name = "Admin",
-                            NormalizedName = "admin"
-                        },
-                        new
-                        {
-                            Id = "08d7052a-6723-439a-9015-a74a20b822c0",
-                            ConcurrencyStamp = "acb2a0cb-c616-4813-9f98-4fe2f609ff1a",
-                            Name = "User",
-                            NormalizedName = "user"
-                        });
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -285,24 +269,6 @@ namespace book.Migrations
                     b.ToTable("books");
                 });
 
-            modelBuilder.Entity("book.Models.Buy", b =>
-                {
-                    b.Property<string>("UserId")
-                        .HasColumnType("nvarchar(450)");
-
-                    b.Property<int>("BookId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("Id")
-                        .HasColumnType("int");
-
-                    b.HasKey("UserId", "BookId");
-
-                    b.HasIndex("BookId");
-
-                    b.ToTable("buys");
-                });
-
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
                 {
                     b.HasOne("Microsoft.AspNetCore.Identity.IdentityRole", null)
@@ -352,35 +318,6 @@ namespace book.Migrations
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-                });
-
-            modelBuilder.Entity("book.Models.Buy", b =>
-                {
-                    b.HasOne("book.Models.Book", "Book")
-                        .WithMany("UserBooks")
-                        .HasForeignKey("BookId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("book.Models.ApplicationUser", "User")
-                        .WithMany("UserBooks")
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Book");
-
-                    b.Navigation("User");
-                });
-
-            modelBuilder.Entity("book.Models.ApplicationUser", b =>
-                {
-                    b.Navigation("UserBooks");
-                });
-
-            modelBuilder.Entity("book.Models.Book", b =>
-                {
-                    b.Navigation("UserBooks");
                 });
 #pragma warning restore 612, 618
         }

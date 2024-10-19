@@ -78,22 +78,21 @@
     <div class="details-container">
         <img src="/image/@Model.photo" alt="Photo of @Model.name" />
         <h2>Name: @Model.name</h2>
-
-        @if (Model.CountNum == 0)
-        {
-            <b>Book isn't Available</b>
-        }
-        else
+        @if (Model.CountNum != 0)
         {
             <b>Book is Available</b>
         }
-
+        else
+        {
+            <b>Book isn't available</b>
+        }
         <b>Type: @Model.gener</b>
         <b>Author: @Model.Author</b>
-
+        <b>Price : @Model.price</b>
         <!-- Buttons for Borrowing and Buying -->
-        <a class="btn btn-success" asp-controller="BuyBorrow" asp-action="Borrow" asp-route-id="@Model.id">Borrow</a>
-        <a class="btn btn-secondary" asp-controller="BuyBorrow" asp-action="buy" asp-route-bookId="@Model.id">Buy</a>
+        <a class="btn btn-success" asp-controller="purchase" asp-action="Borrow" asp-route-id="@Model.id">Borrow</a>
+        <a class="btn btn-secondary" asp-controller="purchase" asp-action="buy" asp-route-id="@Model.id">Buy</a>
+
         <a class="btn btn-primary" asp-action="AllBooks">Home Page</a>
 
         <!-- Admin Controls (Only if the user is an admin) -->

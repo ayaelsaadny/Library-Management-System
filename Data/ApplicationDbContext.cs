@@ -9,50 +9,63 @@ namespace book.Data
     { 
 
         public DbSet<ApplicationUser> ApplicationUsers { get; set; }
-    public DbSet<Buy> buys { get; set; }
+   
         public DbSet<Book> books { get; set; }
-        public DbSet<Borrow> Borrows { get; set; }    
+        public DbSet<Buy> Buys { get; set; }
+        public DbSet<Borrow> Borrows { get; set; }
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options)
         {
              
         }
-        protected override void OnModelCreating(ModelBuilder builder)
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+          
 
-            builder.Entity<IdentityRole>().HasData(
-                new IdentityRole()
-                {
-                    Id = Guid.NewGuid().ToString(),
-                    Name = "Admin",
-                    NormalizedName = "admin",
-                    ConcurrencyStamp = Guid.NewGuid().ToString(),
-                },
+            // Configure the many-to-many relationship
+            modelBuilder.Entity<Buy>()
+                .HasKey(b => b.Id);
+
+            modelBuilder.Entity<Buy>()
+                .HasOne(b => b.User)
+                .WithMany(u => u.Buys)
+                .HasForeignKey(b => b.UserId);
+
+            modelBuilder.Entity<Buy>()
+                .HasOne(b => b.Book)
+                .WithMany(bk => bk.Buys)
+                .HasForeignKey(b => b.BookId);
+            ////////////borrow////////////
+            modelBuilder.Entity<Borrow>()
+           .HasKey(b => b.Id);
+
+            modelBuilder.Entity<Borrow>()
+                .HasOne(b => b.User)
+                .WithMany(u => u.Borrows)
+                .HasForeignKey(b => b.UserId);
+
+            modelBuilder.Entity<Borrow>()
+                .HasOne(b => b.Book)
+                .WithMany(bk => bk.Borrows)
+                .HasForeignKey(b => b.BookId);
+
+            /////////user-admin///////////
+            modelBuilder.Entity<IdentityRole>().HasData(
+                 new IdentityRole()
+                 {
+                     Id = Guid.NewGuid().ToString(),
+                     Name = "Admin",
+                     NormalizedName = "admin",
+                     ConcurrencyStamp = Guid.NewGuid().ToString(),
+                 },
                  new IdentityRole()
                  {
                      Id = Guid.NewGuid().ToString(),
                      Name = "User",
                      NormalizedName = "user",
                      ConcurrencyStamp = Guid.NewGuid().ToString(),
-                 }
-                 );
-
-            // Configure the many-to-many relationship
-            builder.Entity<Buy>()
-                .HasKey(ub => new { ub.UserId, ub.BookId }); // Composite primary key
-
-            builder.Entity<Buy>()
-                .HasOne(ub => ub.User)
-                .WithMany(u => u.UserBooks)
-                .HasForeignKey(ub => ub.UserId);
-
-            builder.Entity<Buy>()
-                .HasOne(ub => ub.Book)
-                .WithMany(b => b.UserBooks)
-                .HasForeignKey(ub => ub.BookId);
-
-          
-
-            base.OnModelCreating(builder);
+                  } 
+            );
+            base.OnModelCreating(modelBuilder);
 
         }
     }

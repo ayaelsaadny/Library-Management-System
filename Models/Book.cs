@@ -10,8 +10,11 @@
         public string Author { get; set; }
        
         public int CountNum { get; set; }
-        public virtual ICollection<Buy> UserBooks { get; set; } = new List<Buy>();
-        public List<Borrow> Borrows { get; set; }
+        
+       
         public  int price { get; set; }
+
+        public ICollection<Buy> Buys { get; set; }
+        public ICollection<Borrow> Borrows { get; set; }
     }
 }

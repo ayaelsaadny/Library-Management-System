@@ -1,0 +1,14 @@
+﻿@using book.ViewModel;
+@model BuyConfirmationViewModel
+
+<h1>Confirm Purchase</h1>
+
+<h3>Are you sure you want to buy the book: <strong>@Model.BookTitle</strong>?</h3>
+<h4>Price : @Model.bookPrice</h4>
+<p>If you confirmed , your requet will send and you must go to library to get your book</p>
+<br />
+<form asp-action="buy" method="post">
+    <input type="hidden" asp-for="UserId" />
+    <input type="hidden" asp-for="BookId" />
+    <button class="btn btn-success" type="submit">Confirm</button>
+</form>

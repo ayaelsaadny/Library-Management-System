@@ -50,16 +50,7 @@ namespace book.Controllers
             return View(matchingBooks);
         }
 
-        public IActionResult Privacy()
-        {
-            Console.WriteLine("CRUD Operation");
-            Console.WriteLine("CRUD Operation");
-            Console.WriteLine("CRUD Operation");
-            return View();
-        }
-
-
-
+       
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()

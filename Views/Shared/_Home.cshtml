@@ -186,11 +186,33 @@
 
         }
     </div>
-
+    @if (ViewContext.HttpContext.User.IsInRole("Admin"))
+    {
+     <ul class="navbar-nav ml-auto">
+     <li class="nav-item">
+         <a class="nav-link" asp-controller="CRUD" asp-action="AdminBorrowedBooks">Borrowed Books</a>
+     </li>
+     <li class="nav-item">
+         <a class="nav-link" asp-controller="CRUD" asp-action="AdminBoughtBooks">Bought Books</a>
+     </li>
+     </ul>
+    }
+    @if (ViewContext.HttpContext.User.IsInRole("User"))
+    {
+        <ul class="navbar-nav ml-auto">
+            <li class="nav-item">
+                <a class="nav-link" asp-controller="purchase" asp-action="MyBorrowedBooks">My Borrowed Books</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" asp-controller="purchase" asp-action="MyBoughtBooks">My Bought Books</a>
+            </li>
+        </ul>
+    }
     <form class="d-flex">
         <input class=" col-xs-4" type="search" name="inpt" placeholder="Search">
         <button class="btn btn-secondary my-2 my-sm-0" asp-controller="Home" asp-action="search" asp-route-inpt="inpt" type="submit">Search</button>
     </form>
+
     @RenderBody()
 </body>
 </html>

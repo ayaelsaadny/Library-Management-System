@@ -1,0 +1,31 @@
+﻿@model IEnumerable<book.Models.Borrow>
+
+@{
+    ViewBag.Title = "My Borrowed Books";
+}
+
+<h2>My Borrowed Books</h2>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Book Title</th>
+           
+            <th>Borrow Date</th>
+            <th>End Date</th>
+
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var borrow in Model)
+        {
+            <tr>
+                <td>@borrow.Book.name</td>
+               
+                <td>@borrow.BorrowDate.ToString("MM/dd/yyyy")</td>
+                <td>@borrow.BorrowDate.AddDays(10).ToString("MM/dd/yyyy")</td>
+
+            </tr>
+        }
+    </tbody>
+</table>

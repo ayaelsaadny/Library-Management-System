@@ -1,0 +1,13 @@
+﻿@using book.ViewModel;
+@model BorrowViewModel
+
+<h2>Confirm Borrow</h2>
+
+<h3>Are you sure you want to borrow the book: <strong>@Model.BookTitle</strong>?</h3>
+<p>If you are late for the return date "@Model.borrowdate" , you will pay a fine "for each day 10 L.E"</p>
+
+<form asp-action="Borrow" method="post">
+    <input type="hidden" asp-for="UserId" />
+    <input type="hidden" asp-for="BookId" />
+    <button class="btn btn-success" type="submit">Confirm</button>
+</form>

@@ -61,7 +61,7 @@ namespace book.Controllers
                 if (result.Succeeded)
                 {
 
-                    return RedirectToAction("AllBooks", "Home");
+                    return RedirectToAction("login", "Accounts");
                 }
                 foreach (var error in result.Errors)
                 {

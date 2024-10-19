@@ -7,7 +7,8 @@ namespace book.Models
         public string FirstName { get; set; }
         public string LastName { get; set; }
 
-        public virtual ICollection<Buy> UserBooks { get; set; } = new List<Buy>();
-        public List<Borrow> Borrows { get; set; }
+        public ICollection<Buy> Buys { get; set; }
+
+        public ICollection<Borrow> Borrows { get; set; }
     }
 }

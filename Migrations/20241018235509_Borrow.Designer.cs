@@ -12,8 +12,8 @@ using book.Data;
 namespace book.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20241018203345_yarb")]
-    partial class yarb
+    [Migration("20241018235509_Borrow")]
+    partial class Borrow
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -50,22 +50,6 @@ namespace book.Migrations
                         .HasFilter("[NormalizedName] IS NOT NULL");
 
                     b.ToTable("AspNetRoles", (string)null);
-
-                    b.HasData(
-                        new
-                        {
-                            Id = "98a0704b-49f1-4e6b-82b6-65762cf51719",
-                            ConcurrencyStamp = "e017bb86-5a2a-4670-bf00-1e1f99d11306",
-                            Name = "Admin",
-                            NormalizedName = "admin"
-                        },
-                        new
-                        {
-                            Id = "e2cfe063-c6f8-4b6d-8f2b-8ffef842d20f",
-                            ConcurrencyStamp = "c4b87b81-d5b2-4697-9e89-d572b8aec7ec",
-                            Name = "User",
-                            NormalizedName = "user"
-                        });
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -299,9 +283,6 @@ namespace book.Migrations
                     b.Property<DateTime>("BorrowDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<DateTime>("EndDate")
-                        .HasColumnType("datetime2");
-
                     b.Property<string>("UserId")
                         .IsRequired()
                         .HasColumnType("nvarchar(450)");
@@ -317,20 +298,26 @@ namespace book.Migrations
 
             modelBuilder.Entity("book.Models.Buy", b =>
                 {
-                    b.Property<string>("UserId")
-                        .HasColumnType("nvarchar(450)");
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<int>("BookId")
                         .HasColumnType("int");
 
-                    b.Property<int>("Id")
-                        .HasColumnType("int");
+                    b.Property<string>("UserId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
 
-                    b.HasKey("UserId", "BookId");
+                    b.HasKey("Id");
 
                     b.HasIndex("BookId");
 
-                    b.ToTable("buys");
+                    b.HasIndex("UserId");
+
+                    b.ToTable("Buys");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -406,13 +393,13 @@ namespace book.Migrations
             modelBuilder.Entity("book.Models.Buy", b =>
                 {
                     b.HasOne("book.Models.Book", "Book")
-                        .WithMany("UserBooks")
+                        .WithMany("Buys")
                         .HasForeignKey("BookId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("book.Models.ApplicationUser", "User")
-                        .WithMany("UserBooks")
+                        .WithMany("Buys")
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -426,14 +413,14 @@ namespace book.Migrations
                 {
                     b.Navigation("Borrows");
 
-                    b.Navigation("UserBooks");
+                    b.Navigation("Buys");
                 });
 
             modelBuilder.Entity("book.Models.Book", b =>
                 {
                     b.Navigation("Borrows");
 
-                    b.Navigation("UserBooks");
+                    b.Navigation("Buys");
                 });
 #pragma warning restore 612, 618
         }

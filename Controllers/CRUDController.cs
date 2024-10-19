@@ -50,7 +50,26 @@ namespace book.Controllers
             _context.SaveChanges();
             return RedirectToAction("AllBooks" , "Home");
         }
-        
+        public IActionResult AdminBorrowedBooks()
+        {
+            var borrowedBooks = _context.Borrows
+                                        .Include(b => b.Book)
+                                        .Include(b => b.User)
+                                        .ToList();
+
+            return View(borrowedBooks);
+        }
+
+
+        public IActionResult AdminBoughtBooks()
+        {
+            var boughtBooks = _context.Buys
+                                      .Include(b => b.Book)
+                                      .Include(b => b.User)
+                                      .ToList();
+
+            return View(boughtBooks);
+        }
 
     }
 }
