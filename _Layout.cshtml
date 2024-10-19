@@ -7,6 +7,18 @@
 </head>
 <body>
     <div>
+
+        @if (ViewContext.HttpContext.User.IsInRole("Admin"))
+        {
+            <ul class="navbar-nav ml-auto">
+            <li class="nav-item">
+                <a class="nav-link" asp-controller="CRUD" asp-action="AdminBorrowedBooks">Borrowed Books</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" asp-controller="CRUD" asp-action="AdminBoughtBooks">Bought Books</a>
+            </li>
+            </ul>
+        }
         @RenderBody()
     </div>
 </body>
