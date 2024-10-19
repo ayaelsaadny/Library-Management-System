@@ -10,9 +10,9 @@
     <thead>
         <tr>
             <th>Book Title</th>
-           
             <th>Borrow Date</th>
             <th>End Date</th>
+            <th>Return</th>
 
         </tr>
     </thead>
@@ -24,7 +24,7 @@
                
                 <td>@borrow.BorrowDate.ToString("MM/dd/yyyy")</td>
                 <td>@borrow.BorrowDate.AddDays(10).ToString("MM/dd/yyyy")</td>
-
+                <td><a class="btn btn-success" asp-controller="purchase" asp-action="returnBook" asp-route-id="@borrow.Id">return</a></td>
             </tr>
         }
     </tbody>

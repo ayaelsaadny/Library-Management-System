@@ -30,7 +30,7 @@ namespace book.Controllers
             }
 
             var userId = User.FindFirstValue(ClaimTypes.NameIdentifier); // Get the current user's ID
-
+            
             var viewModel = new BuyConfirmationViewModel
             {
                 UserId = userId,
@@ -119,5 +119,15 @@ namespace book.Controllers
 
             return View(boughtBooks);
         }
+        public IActionResult returnBook(int id)
+        {
+            var book = _context.Borrows.FirstOrDefault(b => b.Id == id);
+                _context.Borrows.Remove(book);
+                _context.SaveChanges();
+                return RedirectToAction("MyBorrowedBooks", "purchase");
+            
+
+        }
+
     }
 }
