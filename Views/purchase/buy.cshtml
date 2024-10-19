@@ -1,14 +1,22 @@
 ﻿@using book.ViewModel;
+@{
+    Layout = "PurchaseLayout";
+}
 @model BuyConfirmationViewModel
 
-<h1>Confirm Purchase</h1>
 
-<h3>Are you sure you want to buy the book: <strong>@Model.BookTitle</strong>?</h3>
-<h4>Price : @Model.bookPrice</h4>
-<p>If you confirmed , your requet will send and you must go to library to get your book</p>
-<br />
-<form asp-action="buy" method="post">
-    <input type="hidden" asp-for="UserId" />
-    <input type="hidden" asp-for="BookId" />
-    <button class="btn btn-success" type="submit">Confirm</button>
-</form>
+<div class="wrapper">
+    <div class="confirmation-container">
+        <h1>Confirm Purchase</h1>
+
+        <h3>Are you sure you want to buy the book: <strong>@Model.BookTitle</strong>?</h3>
+        <h4>Price : @Model.bookPrice</h4>
+        <p>If you confirm, your request will be sent and you must go to the library to collect your book.</p>
+
+        <form asp-action="buy" method="post">
+            <input class="hidden-inputs" type="hidden" asp-for="UserId" />
+            <input class="hidden-inputs" type="hidden" asp-for="BookId" />
+            <button type="submit">Confirm</button>
+        </form>
+    </div>
+</div>
